@@ -27,6 +27,19 @@
     }
 }
 
+.returntop{
+    font-family: 'iconfont';
+    background: rgba(12,70,130,0.7);
+    @include font(30px,3rem,#fff);
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 10;
+    cursor: pointer;
+    display: none;
+    border-radius: 5px;
+}
+
 #allmap{
     height: 100%;
     width: 100%;

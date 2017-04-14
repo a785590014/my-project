@@ -10,8 +10,19 @@ $(function(){
         $('.shade').fadeOut();
     })
 
+
+    var w_h= $(window).height();
+    var y = $(window).scrollTop();
+    if(y > w_h){
+        $('.returntop').show();
+        $('.returntop').on('click',function(){
+            $('html,body').stop(true).animate({scrollTop: 0});
+        })
+    }
+
     $('.map').on('click', function(){
         $('.shade').fadeIn();
+        $('html,body').css({'overflow-x': 'hidden'});
             // 百度地图API功能
         var map = new BMap.Map("allmap");
         var point = new BMap.Point(118.786457, 32.029556);
@@ -61,9 +72,18 @@ $(function(){
     $('.gps a').eq(6).on('click', function(){
         scro(y1 * 2 + $('.big-date').height() + 2000);
     })
-
     $(window).on('scroll', function(){
         var y = $(window).scrollTop();
+        var w_h = $(window).height();
+        var w_w = $(window).width();
+        if(y > w_h && w_w < 500){
+            $('.returntop').show();
+            $('.returntop').on('click',function(){
+                $('html,body').stop(true).animate({scrollTop: 0});
+            })
+        }else if(y < w_h){
+            $('.returntop').hide();
+        }
         $('.gps-none').fadeOut();
         if(y > y1){
             $('.big-date .left h1,p').fadeIn();
