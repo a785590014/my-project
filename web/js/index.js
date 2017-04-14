@@ -25,7 +25,7 @@ $(function(){
         $('html,body').css({'overflow-x': 'hidden'});
             // 百度地图API功能
         var map = new BMap.Map("allmap");
-        var point = new BMap.Point(118.786457, 32.029556);
+        var point = new BMap.Point(118.786511,32.029147);
         map.centerAndZoom(point, 15);
         var marker = new BMap.Marker(point);  // 创建标注
         map.addOverlay(marker);               // 将标注添加到地图中
@@ -43,6 +43,15 @@ $(function(){
              fontFamily:"微软雅黑"
          });
     map.addOverlay(label);
+        $(window).on("resize", function(){
+            var loadCount = 1;
+            map.addEventListener("tilesloaded", function () {
+                if (loadCount == 1) {
+                    map.setCenter(point);
+                }
+                loadCount = loadCount + 1;
+            });
+        })
     })
     $('.ban-son').fadeIn();
     var y1 = $('.banner').height()/2;
